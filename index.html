@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="main-logo-50.webp" fetchpriority="high">
 <link rel="preload" as="image" href="https://www.ahanaher.com/images/paper-bg.webp">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MedicalBusiness","name":"Ahana & Her","alternateName":"Ahana and Her","description":"Compassionate home healthcare in Chennai — physiotherapy, occupational therapy, psychology, speech therapy, child development and more, delivered to your doorstep.","url":"https://www.ahanaher.com/","logo":"https://www.ahanaher.com/images/main-logo-50.webp","image":"https://www.ahanaher.com/images/main-logo-50.webp","priceRange":"$$","address":{"@type":"PostalAddress","addressLocality":"Chennai","addressRegion":"Tamil Nadu","addressCountry":"IN"},"areaServed":{"@type":"City","name":"Chennai"},"medicalSpecialty":["Physiotherapy","Occupational Therapy","Psychology","Speech Therapy","Behavioural Therapy","Nutrition","Child Development"],"founder":[{"@type":"Person","name":"Smrithi Natanasubramanian","jobTitle":"Co-Founder, Occupational Therapist"},{"@type":"Person","name":"Viswa Laxmi Venugopal","jobTitle":"Co-Founder, Physiotherapist"}],"sameAs":["https://www.instagram.com/ahana.her/","https://www.ahanaher.com/"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"50","bestRating":"5"}}
@@ -51,7 +51,7 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;background-color:var(--surface);background-image:url('https://www.ahanaher.com/images/paper-bg.webp');background-size:680px auto;background-repeat:repeat;background-attachment:fixed;position:relative;}
+body{font-family:'Inter','Noto Sans Kannada',sans-serif;color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;background-color:var(--surface);background-image:url('https://www.ahanaher.com/images/paper-bg.webp');background-size:680px auto;background-repeat:repeat;background-attachment:fixed;position:relative;}
 body::before{content:'';position:fixed;inset:0;background:rgba(247,250,249,.4);pointer-events:none;z-index:0;}
 @media(max-width:900px){body{background-attachment:scroll;background-size:420px auto;}}
 @supports(-webkit-touch-callout:none){body{background-attachment:scroll;}}
@@ -457,6 +457,48 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
   .anim{opacity:1;transform:none;filter:none;}
 }
 
+/* ===== Dynamic Island Table of Contents ===== */
+.island-toc{position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9999;pointer-events:none;}
+.island-toc-backdrop{position:fixed;inset:0;background:rgba(14,42,44,.32);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.22,1,.36,1);z-index:-1;}
+.island-toc[data-state="open"] .island-toc-backdrop{opacity:1;pointer-events:auto;}
+.island-toc-pill{pointer-events:auto;display:flex;align-items:center;gap:12px;background:#0e2a2c;color:#fff;border:1px solid rgba(255,255,255,.07);border-radius:9999px;padding:11px 14px 11px 18px;cursor:pointer;font-family:'Inter','Noto Sans Kannada',sans-serif;font-size:13px;font-weight:500;letter-spacing:.005em;box-shadow:0 14px 40px rgba(14,42,44,.45),0 4px 14px rgba(0,0,0,.18);min-width:220px;max-width:300px;transition:opacity .35s ease,transform .5s cubic-bezier(.22,1,.36,1),background .25s;}
+.island-toc-pill:hover{background:#143638;}
+.island-toc-pill:active{transform:scale(.96);}
+.island-toc[data-state="open"] .island-toc-pill{opacity:0;pointer-events:none;transform:scale(.94);}
+.island-toc-dot{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;box-shadow:0 0 8px rgba(255,255,255,.5);}
+.island-toc-label{flex:1;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:opacity .25s;}
+.island-toc-progress{width:24px;height:24px;flex-shrink:0;display:block;}
+.island-toc-progress svg{display:block;width:100%;height:100%;}
+.island-toc-progress .ring{transition:stroke-dashoffset .2s ease-out;}
+
+.island-toc-panel{pointer-events:none;position:absolute;bottom:0;left:50%;width:340px;max-width:calc(100vw - 32px);height:420px;max-height:65vh;background:#0e2a2c;color:#fff;border:1px solid rgba(255,255,255,.07);border-radius:28px;box-shadow:0 28px 60px rgba(14,42,44,.55);overflow:hidden;opacity:0;transform:translateX(-50%) scale(.85) translateY(20px);transform-origin:bottom center;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;}
+.island-toc[data-state="open"] .island-toc-panel{pointer-events:auto;opacity:1;transform:translateX(-50%) scale(1) translateY(0);}
+.island-toc-panel-head{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:20px 22px 12px;}
+.island-toc-panel-title{font-size:11px;font-weight:600;letter-spacing:.14em;color:rgba(255,255,255,.55);}
+.island-toc-close{background:none;border:none;color:rgba(255,255,255,.55);cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:color .25s,background .25s;}
+.island-toc-close:hover{color:#fff;background:rgba(255,255,255,.06);}
+.island-toc-close svg{width:18px;height:18px;display:block;}
+
+.island-toc-panel-body{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:0 12px 16px;display:flex;flex-direction:column;gap:2px;}
+.island-toc-panel-body::-webkit-scrollbar{width:4px;}
+.island-toc-panel-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:2px;}
+
+.island-toc-item{display:flex;align-items:center;justify-content:space-between;width:100%;background:transparent;border:none;color:rgba(255,255,255,.5);font-family:'Inter','Noto Sans Kannada',sans-serif;font-size:14px;text-align:left;padding:10px 14px;border-radius:10px;cursor:pointer;transition:background .25s,color .25s;}
+.island-toc-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);}
+.island-toc-item:hover .island-toc-item-text{transform:translateX(3px);}
+.island-toc-item.active{background:rgba(255,255,255,.1);color:#fff;font-weight:500;}
+.island-toc-item-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.island-toc-item-dot{width:6px;height:6px;border-radius:50%;background:var(--terracotta);margin-left:10px;flex-shrink:0;opacity:0;transform:scale(0);transition:opacity .3s,transform .3s cubic-bezier(.4,1.4,.4,1);}
+.island-toc-item.active .island-toc-item-dot{opacity:1;transform:scale(1);box-shadow:0 0 8px rgba(197,131,117,.6);}
+
+@media(max-width:520px){
+  .island-toc-pill{min-width:200px;max-width:calc(100vw - 32px);padding:10px 12px 10px 16px;font-size:12.5px;}
+  .island-toc-panel{width:calc(100vw - 24px);height:52vh;max-height:480px;border-radius:24px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .island-toc-pill,.island-toc-panel,.island-toc-backdrop,.island-toc-progress .ring{transition-duration:.01ms!important;}
+}
+
 /* Responsive */
 @media(max-width:1024px){
   .hero-grid{grid-template-columns:1fr;gap:60px;}
@@ -556,7 +598,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
     <div class="mission-grid">
       <div class="anim left">
         <span class="eyebrow">Our Purpose</span>
-        <h2 class="h-lg">Redefining Clinical Care with <em>Empathy.</em></h2>
+        <h2 class="h-lg" data-toc-title="Our Mission" id="mission">Redefining Clinical Care with <em>Empathy.</em></h2>
       </div>
       <div class="mission-cards">
         <div class="mission-card anim right" data-d="1">
@@ -576,7 +618,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
   <div class="container">
     <div class="services-head anim up">
       <span class="eyebrow">What We Offer</span>
-      <h2 class="h-lg">Specialised Care Pathways</h2>
+      <h2 class="h-lg" data-toc-title="Services">Specialised Care Pathways</h2>
       <p class="body" style="margin-top:14px;">Evidence-based clinical services tailored to your unique journey.</p>
     </div>
     <div class="bento">
@@ -655,7 +697,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
   <div class="container">
     <div class="heal-head anim up">
       <span class="eyebrow center">Our Approach</span>
-      <h2 class="h-lg">Heal at <em>Home</em></h2>
+      <h2 class="h-lg" data-toc-title="Heal at Home">Heal at <em>Home</em></h2>
       <p class="body" style="max-width:680px;margin:14px auto 0;">Compassionate, professional healthcare delivered to the comfort of your home. We provide holistic home healthcare services through a multidisciplinary team of physiotherapists, occupational therapists, psychologists, speech therapists, nurses, caregivers, and wellness professionals — ensuring personalised care for every stage of recovery and well-being.</p>
     </div>
     <div class="heal-grid">
@@ -703,7 +745,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
       </div>
       <div class="cp-text anim right" data-d="1">
         <span class="eyebrow">Cold Plunge &amp; Physio Recovery</span>
-        <h2 class="h-lg">Recover faster.<br>Move <em>better.</em></h2>
+        <h2 class="h-lg" data-toc-title="Cold Plunge">Recover faster.<br>Move <em>better.</em></h2>
         <p class="body" style="margin-top:14px;">Mangalore's first integrated Cold Plunge &amp; Physio Recovery Unit — combining evidence-based physiotherapy, guided recovery, and cold immersion therapy to help you recover faster, move better, and perform stronger.</p>
         <div class="cp-pills-wrap">
           <div class="cp-pillset">
@@ -759,7 +801,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
       </div>
       <div class="mar-text anim right" data-d="1">
         <span class="eyebrow">Community</span>
-        <h3 class="h-md">Proud partners of the <em>Mangalore Marathon</em></h3>
+        <h3 class="h-md" data-toc-title="Mangalore Marathon">Proud partners of the <em>Mangalore Marathon</em></h3>
         <p class="body" style="margin-top:12px;">We're proud to support Mangalore's running community — providing on-ground physio support, recovery, and care for runners pushing their limits.</p>
         <div class="flame-line static" style="margin-top:18px;"><span></span></div>
       </div>
@@ -771,7 +813,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
   <div class="container">
     <div class="how-head anim up">
       <span class="eyebrow">Simple Process</span>
-      <h2 class="h-lg">Healing in <em>three steps</em></h2>
+      <h2 class="h-lg" data-toc-title="How It Works">Healing in <em>three steps</em></h2>
     </div>
     <div class="steps">
       <div class="step anim up" data-d="1"><div class="step-num">1</div><h3>Book Online</h3><p>Choose your service and preferred time slot through our easy online booking — available anytime, from anywhere.</p></div>
@@ -787,7 +829,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
     <div class="team-head">
       <div class="anim left">
         <span class="eyebrow">Meet Our Team</span>
-        <h2 class="h-lg">The clinicians behind <em>your care</em></h2>
+        <h2 class="h-lg" data-toc-title="Our Team">The clinicians behind <em>your care</em></h2>
         <p class="body" style="margin-top:12px;max-width:520px;">Our multidisciplinary team brings together decades of clinical expertise across physiotherapy, psychology, occupational therapy and speech &amp; language therapy.</p>
       </div>
       <div class="team-nav anim right" data-d="1">
@@ -819,7 +861,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
     <div class="testi-head">
       <div class="anim left">
         <span class="eyebrow">Patient Stories</span>
-        <h2 class="h-lg">Words from our <em>community</em></h2>
+        <h2 class="h-lg" data-toc-title="Testimonials">Words from our <em>community</em></h2>
       </div>
       <a href="https://www.google.com/maps/search/Ahana+and+Her+Chennai" target="_blank" rel="noopener" class="btn btn-secondary anim right">See All Google Reviews</a>
     </div>
@@ -880,7 +922,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
       </div>
       <div class="anim right" data-d="2">
         <span class="eyebrow">Who We Are</span>
-        <h2 class="h-lg">Built with <em>purpose</em></h2>
+        <h2 class="h-lg" data-toc-title="Our Story">Built with <em>purpose</em></h2>
         <p class="body" style="margin-top:18px;margin-bottom:14px;">Ahana &amp; Her was founded by two clinicians with a shared conviction — that every person deserves expert, personalised healthcare, in the comfort of their own home, delivered by people who truly understand them.</p>
         <p class="body">From the meaning of our name to the symbol of the Phoenix, every part of our identity was chosen with deep intention.</p>
         <div class="page-links">
@@ -906,7 +948,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
 
 <section id="cta">
   <div class="container cta-inner">
-    <h2 class="anim up">Your wellness deserves a home visit</h2>
+    <h2 class="anim up" data-toc-title="Book a Visit">Your wellness deserves a home visit</h2>
     <p class="anim up" data-d="1">Book a session with one of our specialists today. Professional, private, and delivered right to your door across Chennai.</p>
     <div class="anim up" data-d="2"><a href="https://www.ahanaher.com/" target="_blank" rel="noopener" class="btn-white">Book Now — It's Easy <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span></a></div>
   </div>
@@ -934,6 +976,30 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
 </div>
 
 </main>
+
+<!-- Dynamic Island Table of Contents -->
+<div class="island-toc" id="islandToc" data-state="closed" aria-hidden="false">
+  <div class="island-toc-backdrop" data-island-close></div>
+  <button class="island-toc-pill" id="islandTocPill" type="button" aria-label="Show table of contents" aria-expanded="false">
+    <span class="island-toc-dot" aria-hidden="true"></span>
+    <span class="island-toc-label" id="islandTocLabel">Contents</span>
+    <span class="island-toc-progress" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="2.5"></circle>
+        <circle id="islandTocRing" class="ring" cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="62.83" stroke-dashoffset="62.83" transform="rotate(-90 12 12)"></circle>
+      </svg>
+    </span>
+  </button>
+  <div class="island-toc-panel" role="dialog" aria-label="Table of contents" aria-modal="true">
+    <div class="island-toc-panel-head">
+      <span class="island-toc-panel-title">TABLE OF CONTENTS</span>
+      <button class="island-toc-close" type="button" aria-label="Close table of contents" data-island-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg>
+      </button>
+    </div>
+    <div class="island-toc-panel-body" id="islandTocList"></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-grid">
@@ -1187,6 +1253,96 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
     });
   },{threshold:.25});
   document.querySelectorAll('video').forEach(v=>vidObs.observe(v));
+
+  // Dynamic Island Table of Contents
+  const island=document.getElementById('islandToc');
+  if(island){
+    const pill=document.getElementById('islandTocPill');
+    const label=document.getElementById('islandTocLabel');
+    const list=document.getElementById('islandTocList');
+    const ring=document.getElementById('islandTocRing');
+    const CIRCUMFERENCE=2*Math.PI*10;
+    let headings=[];
+
+    function buildHeadings(){
+      while(list.firstChild) list.removeChild(list.firstChild);
+      const els=document.querySelectorAll('main h2.h-lg, main h3.h-md, main #cta h2');
+      headings=[];
+      els.forEach((el,i)=>{
+        if(el.hasAttribute('data-toc-ignore')) return;
+        let id=el.id;
+        if(!id){
+          const section=el.closest('section[id]');
+          if(section&&section.id) id=section.id;
+          else id='heading-'+i;
+          el.id=id;
+        }
+        const text=(el.getAttribute('data-toc-title')||el.textContent||'').replace(/\s+/g,' ').trim();
+        if(!text) return;
+        headings.push({el,id,text});
+        const btn=document.createElement('button');
+        btn.className='island-toc-item';
+        btn.type='button';
+        btn.dataset.id=id;
+        const t=document.createElement('span');
+        t.className='island-toc-item-text';
+        t.textContent=text;
+        const d=document.createElement('span');
+        d.className='island-toc-item-dot';
+        btn.appendChild(t);
+        btn.appendChild(d);
+        btn.addEventListener('click',(e)=>{
+          e.stopPropagation();
+          const y=el.getBoundingClientRect().top+window.scrollY-80;
+          window.scrollTo({top:y,behavior:'smooth'});
+          setState('closed');
+        });
+        list.appendChild(btn);
+      });
+    }
+
+    function updateActive(){
+      let active=null;
+      for(const h of headings){
+        const top=h.el.getBoundingClientRect().top;
+        if(top<=120) active=h;
+        else break;
+      }
+      if(!active&&headings.length) active=headings[0];
+      if(active){
+        label.textContent=active.text;
+        list.querySelectorAll('.island-toc-item').forEach(b=>{
+          b.classList.toggle('active', b.dataset.id===active.id);
+        });
+      }
+      const total=document.documentElement.scrollHeight-window.innerHeight;
+      const progress=total>0?Math.max(0,Math.min(100,(window.scrollY/total)*100)):0;
+      if(ring) ring.style.strokeDashoffset=CIRCUMFERENCE-(progress/100)*CIRCUMFERENCE;
+    }
+
+    function setState(s){
+      island.dataset.state=s;
+      pill.setAttribute('aria-expanded',s==='open');
+      if(s==='open'){
+        // scroll active item into view
+        const a=list.querySelector('.island-toc-item.active');
+        if(a) a.scrollIntoView({block:'nearest'});
+      }
+    }
+
+    pill.addEventListener('click',()=>setState('open'));
+    island.querySelectorAll('[data-island-close]').forEach(b=>{
+      b.addEventListener('click',(e)=>{e.stopPropagation();setState('closed');});
+    });
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&island.dataset.state==='open') setState('closed');
+    });
+
+    buildHeadings();
+    updateActive();
+    window.addEventListener('scroll',updateActive,{passive:true});
+    window.addEventListener('resize',()=>{ buildHeadings(); updateActive(); });
+  }
 
   // Parallax hint for hero orbs (very subtle)
   const orbs=document.querySelectorAll('#hero .orb');
