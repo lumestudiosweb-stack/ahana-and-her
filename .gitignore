@@ -1,0 +1,19 @@
+# Legacy / reference files not part of the live site
+index (20).html
+stitch_ahana_her_medical_revamp/
+
+# Duplicate logo file
+main-logo-50 (1).webp
+wing (1).webp
+
+# OS / editor metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# Editor configs
+.vscode/
+.idea/
