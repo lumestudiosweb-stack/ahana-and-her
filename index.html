@@ -248,7 +248,7 @@ footer .brand-name,footer .brand{color:var(--terracotta-deep);}
 .flame-line.static{position:relative;left:auto;bottom:auto;transform:none;width:auto;height:32px;margin:0 auto 14px;}
 
 /* Cold Plunge */
-.cold-plunge{padding:120px 0;background:linear-gradient(135deg,#0e3a3d 0%,var(--teal-dark) 100%);color:#fff;position:relative;overflow:hidden;}
+.cold-plunge{padding:120px 0;background:linear-gradient(135deg,#0e3a3d 0%,var(--teal-dark) 100%);color:#fff;position:relative;overflow:hidden;z-index:1;}
 .cold-plunge::before{content:'';position:absolute;top:-180px;left:-160px;width:520px;height:520px;background:radial-gradient(circle,rgba(166,239,244,.18) 0%,transparent 65%);border-radius:50%;filter:blur(40px);}
 .cold-plunge::after{content:'';position:absolute;bottom:-180px;right:-160px;width:480px;height:480px;background:radial-gradient(circle,rgba(197,131,117,.12) 0%,transparent 65%);border-radius:50%;filter:blur(40px);}
 .cp-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;}
@@ -330,7 +330,7 @@ footer .brand-name,footer .brand{color:var(--terracotta-deep);}
 .team-dot.active{background:var(--primary);width:24px;border-radius:9999px;}
 
 /* Testimonials */
-.testi{padding:120px 0;background:var(--teal-dark);color:#fff;}
+.testi{padding:120px 0;background:var(--teal-dark);color:#fff;position:relative;z-index:1;}
 .testi-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:54px;}
 .testi-head .eyebrow{color:#ffb4a5;}
 .testi-head .h-lg{color:#fff;}
@@ -370,7 +370,7 @@ footer .brand-name,footer .brand{color:var(--terracotta-deep);}
 .plc:hover .plc-arrow{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
 
 /* CTA Strip */
-#cta{padding:120px 0;background:linear-gradient(135deg,var(--primary),var(--teal-dark));text-align:center;color:#fff;position:relative;overflow:hidden;}
+#cta{padding:120px 0;background:linear-gradient(135deg,var(--primary),var(--teal-dark));text-align:center;color:#fff;position:relative;overflow:hidden;z-index:1;}
 #cta::before{content:'';position:absolute;top:-100px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(197,131,117,.18) 0%,transparent 65%);border-radius:50%;filter:blur(40px);}
 #cta::after{content:'';position:absolute;bottom:-100px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(232,219,199,.16) 0%,transparent 65%);border-radius:50%;filter:blur(40px);}
 .cta-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
