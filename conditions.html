@@ -49,11 +49,13 @@
   --container:1280px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;background-color:var(--surface);background-image:url('https://www.ahanaher.com/images/paper-bg.webp');background-size:680px auto;background-repeat:repeat;background-attachment:fixed;position:relative;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;max-width:100%;-webkit-font-smoothing:antialiased;background-color:var(--surface);background-image:url('https://www.ahanaher.com/images/paper-bg.webp');background-size:680px auto;background-repeat:repeat;background-attachment:fixed;position:relative;}
 body::before{content:'';position:fixed;inset:0;background:rgba(247,250,249,.4);pointer-events:none;z-index:0;}
 @media(max-width:900px){body{background-attachment:scroll;background-size:420px auto;}}
 @supports(-webkit-touch-callout:none){body{background-attachment:scroll;}}
+/* Touch devices: never use fixed bg (prevents wobble/jank on scroll) */
+@media(hover:none) and (pointer:coarse){body{background-attachment:scroll!important;}.orb{animation:none!important;}}
 img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;}
@@ -236,10 +238,16 @@ footer{background:rgba(240,234,226,.92);backdrop-filter:blur(4px);color:var(--te
   .footer-bottom{flex-direction:column;gap:8px;text-align:center;}
   .container,.nav-inner,.footer-grid,.footer-bottom{padding-left:20px;padding-right:20px;}
   .page-hero{padding:60px 0 40px;}
-  .search-section{position:relative;top:0;}
+  .search-section{position:relative;top:0;background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none;}
   .cond-grid{grid-template-columns:1fr;}
   .dept-head h2{font-size:26px;}
   .search-input{padding:14px 20px 14px 50px;font-size:15px;}
+}
+/* Touch devices: drop backdrop blur on nav + search to stop scroll wobble */
+@media(hover:none) and (pointer:coarse){
+  nav.site-nav{background:rgba(247,250,249,.97);backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .search-section{position:relative;top:0;background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none;}
+  body::before{display:none;}
 }
 </style>
 </head>
@@ -265,8 +273,6 @@ footer{background:rgba(240,234,226,.92);backdrop-filter:blur(4px);color:var(--te
 <section class="page-hero">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
-  <img src="wing.webp" alt="" class="deco-wing right" aria-hidden="true">
-  <img src="wing.webp" alt="" class="deco-wing left" aria-hidden="true">
   <div class="container">
     <span class="eyebrow center anim up">Clinical Reference</span>
     <h1 class="h-display anim up" data-d="1">Conditions we <em>treat</em></h1>

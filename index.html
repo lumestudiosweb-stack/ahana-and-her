@@ -50,11 +50,13 @@
   --container:1280px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter','Noto Sans Kannada',sans-serif;color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;background-color:var(--surface);background-image:url('https://www.ahanaher.com/images/paper-bg.webp');background-size:680px auto;background-repeat:repeat;background-attachment:fixed;position:relative;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Inter','Noto Sans Kannada',sans-serif;color:var(--text);overflow-x:hidden;max-width:100%;-webkit-font-smoothing:antialiased;background-color:var(--surface);background-image:url('https://www.ahanaher.com/images/paper-bg.webp');background-size:680px auto;background-repeat:repeat;background-attachment:fixed;position:relative;}
 body::before{content:'';position:fixed;inset:0;background:rgba(247,250,249,.4);pointer-events:none;z-index:0;}
 @media(max-width:900px){body{background-attachment:scroll;background-size:420px auto;}}
 @supports(-webkit-touch-callout:none){body{background-attachment:scroll;}}
+/* Touch devices: never use fixed bg or sticky-blur (prevents scroll wobble) */
+@media(hover:none) and (pointer:coarse){body{background-attachment:scroll!important;}nav.site-nav{background:rgba(247,250,249,.97);backdrop-filter:none;-webkit-backdrop-filter:none;}body::before{display:none;}}
 .deco-wing{position:absolute;width:340px;height:auto;pointer-events:none;opacity:.85;z-index:1;}
 .deco-wing.right{right:-60px;top:55%;transform:translateY(-50%);}
 .deco-wing.left{left:-80px;bottom:-40px;transform:scaleX(-1);}
