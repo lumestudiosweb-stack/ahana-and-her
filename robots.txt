@@ -1,4 +1,4 @@
-# Ahana & Her — https://www.ahanaher.com
+# Ahana & Her — https://ahanaher.com
 # All crawlers welcome, including AI / LLM crawlers used for answer citations.
 
 User-agent: *
@@ -50,4 +50,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://www.ahanaher.com/sitemap.xml
+Sitemap: https://ahanaher.com/sitemap.xml
