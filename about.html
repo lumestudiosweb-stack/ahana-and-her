@@ -291,7 +291,7 @@ footer{background:rgba(240,234,226,.92);backdrop-filter:blur(4px);color:var(--te
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
-.anim{opacity:0;will-change:transform,opacity;transition:opacity .85s cubic-bezier(.22,.7,.22,1),transform .85s cubic-bezier(.22,.7,.22,1),filter .85s;}
+.anim{opacity:0;transition:opacity .85s cubic-bezier(.22,.7,.22,1),transform .85s cubic-bezier(.22,.7,.22,1),filter .85s;}
 .anim.up{transform:translateY(40px);}
 .anim.down{transform:translateY(-40px);}
 .anim.left{transform:translateX(-60px);}
@@ -849,8 +849,10 @@ img[loading="lazy"].loaded{opacity:1;}
         let id=el.id;
         if(!id){
           const section=el.closest('section[id]');
-          if(section&&section.id) id=section.id;
-          else id='heading-'+i;
+          // Use a UNIQUE id — never the section's own id, or the heading
+          // would inherit that section's ID-based CSS (e.g. #cta's gradient
+          // background + padding) and render as a visible box.
+          id=(section&&section.id?section.id:'heading')+'-toc'+i;
           el.id=id;
         }
         const text=(el.getAttribute('data-toc-title')||el.textContent||'').replace(/\s+/g,' ').trim();
