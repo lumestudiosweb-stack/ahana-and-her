@@ -370,7 +370,7 @@ footer .brand-name,footer .brand{color:var(--terracotta-deep);}
 .plc:hover .plc-arrow{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
 
 /* CTA Strip */
-#cta{padding:120px 0;background:linear-gradient(135deg,var(--primary),var(--teal-dark));text-align:center;color:#fff;position:relative;overflow:hidden;z-index:1;}
+#cta{padding:120px 0;background:radial-gradient(circle at 50% 30%,#4a342b 0%,#33241e 55%,#281d18 100%);text-align:center;color:#FAF7F2;position:relative;overflow:hidden;z-index:1;}
 #cta::before{content:'';position:absolute;top:-100px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(197,131,117,.18) 0%,transparent 65%);border-radius:50%;filter:blur(40px);}
 #cta::after{content:'';position:absolute;bottom:-100px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(232,219,199,.16) 0%,transparent 65%);border-radius:50%;filter:blur(40px);}
 .cta-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
@@ -453,10 +453,18 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
 /* Smooth scroll snap for marquee pause on hover */
 .marquee-strip:hover .marquee-track{animation-play-state:paused;}
 
+/* Floating fizz particles (from old reference design) */
+.fizz{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.fizz span{position:absolute;display:block;border-radius:50%;background:currentColor;will-change:transform,opacity;animation:fizzdrift ease-in-out infinite;}
+@keyframes fizzdrift{0%,100%{transform:translate(0,0) scale(1);opacity:.12;}25%{opacity:.55;}50%{transform:translate(var(--dx,8px),var(--dy,-16px)) scale(1.2);opacity:.4;}75%{opacity:.6;}}
+.cold-plunge .fizz{color:#a6eff4;}
+#cta .fizz{color:#E8C5B0;}
+
 /* Respect reduced motion globally */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
   .anim{opacity:1;transform:none;filter:none;}
+  .fizz span{animation:none;opacity:.3;}
 }
 
 /* ===== Dynamic Island Table of Contents ===== */
@@ -735,8 +743,8 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
   </div>
 </section>
 
-<section id="cold-plunge" class="cold-plunge">
-  <div class="container">
+<section id="cold-plunge" class="cold-plunge" data-fizz="42">
+  <div class="container" style="position:relative;z-index:1;">
     <div class="cp-grid">
       <div class="cp-video video-wrap anim left" data-aspect>
         <video autoplay muted loop playsinline preload="metadata" aria-label="Cold plunge therapy">
@@ -948,7 +956,7 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
   </div>
 </section>
 
-<section id="cta">
+<section id="cta" data-fizz="38">
   <div class="container cta-inner">
     <h2 class="anim up" data-toc-title="Book a Visit">Your wellness deserves a home visit</h2>
     <p class="anim up" data-d="1">Book a session with one of our specialists today. Professional, private, and delivered right to your door across Chennai.</p>
@@ -1255,6 +1263,32 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
     });
   },{threshold:.25});
   document.querySelectorAll('video').forEach(v=>vidObs.observe(v));
+
+  // Floating fizz particles (recreated from the old reference design)
+  function spawnFizz(host,count){
+    const f=document.createElement('div');
+    f.className='fizz';
+    f.setAttribute('aria-hidden','true');
+    for(let i=0;i<count;i++){
+      const s=document.createElement('span');
+      const size=(Math.random()*4+1.5).toFixed(1);
+      s.style.width=size+'px';
+      s.style.height=size+'px';
+      s.style.left=(Math.random()*100).toFixed(2)+'%';
+      s.style.top=(Math.random()*100).toFixed(2)+'%';
+      s.style.setProperty('--dx',(Math.random()*30-15).toFixed(0)+'px');
+      s.style.setProperty('--dy',(Math.random()*-32-8).toFixed(0)+'px');
+      s.style.animationDuration=(Math.random()*7+5).toFixed(1)+'s';
+      s.style.animationDelay=(Math.random()*-12).toFixed(1)+'s';
+      f.appendChild(s);
+    }
+    host.insertBefore(f,host.firstChild);
+  }
+  const coarse=window.matchMedia&&window.matchMedia('(hover:none) and (pointer:coarse)').matches;
+  document.querySelectorAll('[data-fizz]').forEach(el=>{
+    const base=parseInt(el.getAttribute('data-fizz'),10)||30;
+    spawnFizz(el,coarse?Math.round(base*0.5):base);
+  });
 
   // Dynamic Island Table of Contents
   const island=document.getElementById('islandToc');
