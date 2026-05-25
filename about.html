@@ -85,6 +85,16 @@ nav.scrolled .nav-inner{padding:12px 64px;}
   .nav-links.open{display:flex;}
   .hamburger{display:flex;}
 }
+/* Shrink the brand on phones so it never collides with the hamburger */
+@media(max-width:600px){
+  .brand-logo{height:38px;}
+  .brand{gap:8px;}
+  .brand-name{font-size:16px;letter-spacing:.08em;}
+}
+@media(max-width:400px){
+  .brand-logo{height:34px;}
+  .brand-name{font-size:14px;letter-spacing:.06em;}
+}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:9999px;font-size:14px;font-weight:600;letter-spacing:.04em;border:1.5px solid transparent;cursor:pointer;transition:all .3s;}

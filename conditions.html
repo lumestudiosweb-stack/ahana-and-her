@@ -84,6 +84,16 @@ nav.scrolled .nav-inner{padding:12px 64px;}
   .nav-links.open{display:flex;}
   .hamburger{display:flex;}
 }
+/* Shrink the brand on phones so it never collides with the hamburger */
+@media(max-width:600px){
+  .brand-logo{height:38px;}
+  .brand{gap:8px;}
+  .brand-name{font-size:16px;letter-spacing:.08em;}
+}
+@media(max-width:400px){
+  .brand-logo{height:34px;}
+  .brand-name{font-size:14px;letter-spacing:.06em;}
+}
 
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--terracotta);display:block;margin-bottom:14px;}
 .eyebrow.center{text-align:center;}
