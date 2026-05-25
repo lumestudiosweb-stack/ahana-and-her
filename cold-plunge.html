@@ -125,8 +125,8 @@ nav.scrolled .nav-inner{padding:12px 64px;}
 .approach{padding:100px 0;background:linear-gradient(135deg,var(--teal-light) 0%,#EBDBCD 100%);position:relative;overflow:hidden;}
 .approach::before{content:'';position:absolute;right:-150px;top:-150px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,255,255,.35) 0%,transparent 65%);border-radius:50%;}
 .approach-inner{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto;position:relative;z-index:1;}
-.approach-visual{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:5/6;box-shadow:0 24px 60px rgba(61,43,43,.18);}
-.approach-visual img{width:100%;height:100%;object-fit:cover;}
+.approach-visual{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:5/6;box-shadow:0 24px 60px rgba(61,43,43,.18);background:var(--surface-low);}
+.approach-visual img,.approach-visual video{width:100%;height:100%;object-fit:cover;display:block;}
 .approach-text .h-lg{color:var(--teal-dark);margin-bottom:18px;}
 .pillset{margin-top:22px;}
 .pillset h4{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta-deep);font-weight:600;margin-bottom:12px;}
@@ -287,7 +287,9 @@ footer{background:rgba(240,234,226,.92);backdrop-filter:blur(4px);color:var(--te
   <div class="container">
     <div class="approach-inner">
       <div class="approach-visual anim left">
-        <img src="clinic-img/clinic-1.jpeg" alt="Inside the Ahana &amp; Her recovery unit" loading="lazy">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="Cold plunge session in action">
+          <source src="cold-plunge.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="approach-text anim right" data-d="1">
         <span class="eyebrow">Inside a Session</span>
