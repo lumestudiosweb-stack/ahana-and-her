@@ -307,7 +307,7 @@ a.contact-row:hover strong{color:var(--terracotta-deep);}
 .clinic-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1);}
 .clinic-tile:hover img{transform:scale(1.05);}
 @media(max-width:900px){.clinic-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:640px){.clinic-grid{grid-template-columns:1fr;}.clinic-section{padding:80px 0;}}
+@media(max-width:640px){.clinic-grid{grid-template-columns:1fr;}.clinic-section{padding:80px 0;}.kids-gallery-section{padding:60px 0;}.kids-gallery-frame{aspect-ratio:4/5;border-radius:20px;}}
 .heal-quote{margin-top:32px;padding-top:24px;border-top:1px solid rgba(218,201,188,.35);text-align:center;position:relative;}
 .heal-quote p{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--primary);line-height:1.45;}
 
@@ -389,12 +389,24 @@ a.contact-row:hover strong{color:var(--terracotta-deep);}
 .th-avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--g1,var(--primary)),var(--g2,var(--teal-dark)));color:#fff;font-family:'Playfair Display',serif;font-size:42px;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;letter-spacing:.02em;box-shadow:0 12px 28px rgba(61,43,43,.18);position:relative;overflow:hidden;}
 .th-avatar::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),transparent 60%);}
 .th-avatar span{position:relative;z-index:1;}
+.th-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;position:relative;z-index:1;}
 .th-role{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:8px;}
 .th-info h4{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--primary);line-height:1.25;}
 
 .team-dots{display:flex;justify-content:center;gap:8px;margin-top:24px;}
 .team-dot{width:8px;height:8px;border-radius:50%;background:rgba(218,201,188,.6);transition:background .25s,transform .25s,width .25s;border:none;cursor:pointer;padding:0;}
 .team-dot.active{background:var(--primary);width:24px;border-radius:9999px;}
+
+/* Kids gallery */
+.kids-gallery-section{padding:100px 0;}
+.kids-gallery-frame{position:relative;width:100%;max-width:760px;aspect-ratio:16/9;margin:0 auto;border-radius:28px;overflow:hidden;box-shadow:0 28px 64px rgba(61,43,43,.16);border:1px solid rgba(218,201,188,.4);}
+.kg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:kgFade 25s infinite;}
+.kg-img:nth-child(1){animation-delay:0s;}
+.kg-img:nth-child(2){animation-delay:5s;}
+.kg-img:nth-child(3){animation-delay:10s;}
+.kg-img:nth-child(4){animation-delay:15s;}
+.kg-img:nth-child(5){animation-delay:20s;}
+@keyframes kgFade{0%{opacity:0;}3%{opacity:1;}17%{opacity:1;}20%{opacity:0;}100%{opacity:0;}}
 
 /* Testimonials */
 .testi{padding:120px 0;background:var(--teal-dark);color:#fff;position:relative;z-index:1;}
@@ -856,20 +868,38 @@ img[loading="lazy"].loaded,img[loading="lazy"][complete]{opacity:1;}
     </div>
     <div class="team-track-wrap">
       <div class="team-track" id="teamTrack">
-        <article class="therapist-card" data-i="0"><div class="th-avatar" style="--g1:var(--primary);--g2:var(--teal-dark);"><span>SB</span></div><div class="th-info"><div class="th-role">Clinic Manager · Senior Physiotherapist</div><h4>Dr. Shivani Basrur, PT</h4></div></article>
-        <article class="therapist-card" data-i="1"><div class="th-avatar" style="--g1:var(--terracotta);--g2:var(--terracotta-deep);"><span>SS</span></div><div class="th-info"><div class="th-role">Case Manager · Senior Psychologist</div><h4>Ms. Sharadhi Shravan</h4></div></article>
-        <article class="therapist-card" data-i="2"><div class="th-avatar" style="--g1:#4a352d;--g2:#2e211c;"><span>RR</span></div><div class="th-info"><div class="th-role">Head of Admin · Psychologist</div><h4>Ms. Ragendhu Rajeev</h4></div></article>
-        <article class="therapist-card" data-i="3"><div class="th-avatar" style="--g1:#C58375;--g2:#a8614d;"><span>SB</span></div><div class="th-info"><div class="th-role">Occupational Therapist</div><h4>Dr. Sowbhagya Bhat, OT</h4></div></article>
-        <article class="therapist-card" data-i="4"><div class="th-avatar" style="--g1:#6b4a3a;--g2:#4a352d;"><span>NS</span></div><div class="th-info"><div class="th-role">Speech &amp; Language Therapist</div><h4>Ms. Nazima Shaikh</h4></div></article>
+        <article class="therapist-card" data-i="0"><div class="th-avatar" style="--g1:var(--primary);--g2:var(--teal-dark);"><img src="therapists/shivani.jpeg" alt="Dr. Shivani Basrur"></div><div class="th-info"><div class="th-role">Clinic Manager · Senior Physiotherapist</div><h4>Dr. Shivani Basrur, PT</h4></div></article>
+        <article class="therapist-card" data-i="1"><div class="th-avatar" style="--g1:var(--terracotta);--g2:var(--terracotta-deep);"><img src="therapists/aaradhana.jpeg" alt="Ms. Aaradhana Alva"></div><div class="th-info"><div class="th-role">Case Manager · Senior Psychologist</div><h4>Ms. Aaradhana Alva</h4></div></article>
+        <article class="therapist-card" data-i="2"><div class="th-avatar" style="--g1:#4a352d;--g2:#2e211c;"><img src="therapists/ragendhu.jpeg" alt="Ms. Ragendhu Rajeev"></div><div class="th-info"><div class="th-role">Head of Admin · Psychologist</div><h4>Ms. Ragendhu Rajeev</h4></div></article>
+        <article class="therapist-card" data-i="3"><div class="th-avatar" style="--g1:#C58375;--g2:#a8614d;"><img src="therapists/sowbhagya.jpeg" alt="Dr. Sowbhagya Bhat"></div><div class="th-info"><div class="th-role">Occupational Therapist</div><h4>Dr. Sowbhagya Bhat, OT</h4></div></article>
+        <article class="therapist-card" data-i="4"><div class="th-avatar" style="--g1:#6b4a3a;--g2:#4a352d;"><img src="therapists/nazima.jpeg" alt="Ms. Nazima Shaikh"></div><div class="th-info"><div class="th-role">Speech &amp; Language Therapist</div><h4>Ms. Nazima Shaikh</h4></div></article>
         <article class="therapist-card" data-i="5"><div class="th-avatar" style="--g1:#913d2c;--g2:#7a2d1e;"><span>TB</span></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Tejasvi B</h4></div></article>
-        <article class="therapist-card" data-i="6"><div class="th-avatar" style="--g1:#8a5a47;--g2:#6b4a3a;"><span>NP</span></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Nathasha Pais</h4></div></article>
+        <article class="therapist-card" data-i="6"><div class="th-avatar" style="--g1:#8a5a47;--g2:#6b4a3a;"><img src="therapists/nathasha.jpeg" alt="Ms. Nathasha Pais"></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Nathasha Pais</h4></div></article>
         <article class="therapist-card" data-i="7"><div class="th-avatar" style="--g1:#C58375;--g2:#913d2c;"><span>VM</span></div><div class="th-info"><div class="th-role">Sports Physiotherapist</div><h4>Dr. Vaibhavi Mayekar, PT</h4></div></article>
         <article class="therapist-card" data-i="8"><div class="th-avatar" style="--g1:#4a352d;--g2:#6b4a3a;"><span>K</span></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Krithi</h4></div></article>
-        <article class="therapist-card" data-i="9"><div class="th-avatar" style="--g1:#a8614d;--g2:#C58375;"><span>NM</span></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Nicole Mendonca</h4></div></article>
-        <article class="therapist-card" data-i="10"><div class="th-avatar" style="--g1:#6b4a3a;--g2:#2e211c;"><span>MF</span></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Mehreen Fathima</h4></div></article>
+        <article class="therapist-card" data-i="9"><div class="th-avatar" style="--g1:#a8614d;--g2:#C58375;"><img src="therapists/nicole.jpeg" alt="Ms. Nicole Mendonca"></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Nicole Mendonca</h4></div></article>
+        <article class="therapist-card" data-i="10"><div class="th-avatar" style="--g1:#6b4a3a;--g2:#2e211c;"><img src="therapists/mehreen.jpeg" alt="Ms. Mehreen Fathima"></div><div class="th-info"><div class="th-role">Psychologist</div><h4>Ms. Mehreen Fathima</h4></div></article>
+        <article class="therapist-card" data-i="11"><div class="th-avatar" style="--g1:#7a2d1e;--g2:#4a352d;"><img src="therapists/payal-shetty.jpeg" alt="Ms. Payal Shetty"></div><div class="th-info"><div class="th-role">Speech &amp; Language Therapist</div><h4>Ms. Payal Shetty</h4></div></article>
       </div>
     </div>
     <div class="team-dots" id="teamDots" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="kids-gallery" class="kids-gallery-section">
+  <div class="container">
+    <div class="clinic-head anim up">
+      <span class="eyebrow center">Moments We Cherish</span>
+      <h2 class="h-lg" data-toc-title="Our Kids">Our <em>kids</em>, in their element</h2>
+      <p>Snapshots from sessions, celebrations and milestones — the moments that make this work meaningful.</p>
+    </div>
+    <div class="kids-gallery-frame anim zoom">
+      <img class="kg-img" src="gallery-1.jpeg" alt="Ahana &amp; Her — children at the centre" loading="lazy">
+      <img class="kg-img" src="gallery-2.jpeg" alt="Ahana &amp; Her — children at the centre" loading="lazy">
+      <img class="kg-img" src="gallery-3.jpeg" alt="Ahana &amp; Her — children at the centre" loading="lazy">
+      <img class="kg-img" src="gallery-4.jpeg" alt="Ahana &amp; Her — children at the centre" loading="lazy">
+      <img class="kg-img" src="gallery-5.jpeg" alt="Ahana &amp; Her — children at the centre" loading="lazy">
+    </div>
   </div>
 </section>
 
